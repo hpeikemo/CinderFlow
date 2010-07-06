@@ -1,0 +1,278 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F634EAED11E3BB5200BC869B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F634EAEC11E3BB5200BC869B /* Cocoa.framework */; };
+		F634EB0C11E3BBA700BC869B /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F634EB0311E3BBA700BC869B /* Accelerate.framework */; };
+		F634EB0D11E3BBA700BC869B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F634EB0411E3BBA700BC869B /* AudioToolbox.framework */; };
+		F634EB0E11E3BBA700BC869B /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F634EB0511E3BBA700BC869B /* AudioUnit.framework */; };
+		F634EB1011E3BBA700BC869B /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F634EB0711E3BBA700BC869B /* CoreAudio.framework */; };
+		F634EB1111E3BBA700BC869B /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F634EB0811E3BBA700BC869B /* CoreVideo.framework */; };
+		F634EB1211E3BBA700BC869B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F634EB0911E3BBA700BC869B /* OpenGL.framework */; };
+		F634EB1311E3BBA700BC869B /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F634EB0A11E3BBA700BC869B /* QTKit.framework */; };
+		F634EB1411E3BBA700BC869B /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F634EB0B11E3BBA700BC869B /* QuickTime.framework */; };
+		F64F984211E3BD7700EBE469 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F64F984011E3BD7700EBE469 /* main.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F634EAE911E3BB5200BC869B /* CinderFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CinderFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F634EAEC11E3BB5200BC869B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		F634EAEE11E3BB5200BC869B /* CinderFlow-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CinderFlow-Info.plist"; sourceTree = "<group>"; };
+		F634EAEF11E3BB5200BC869B /* CinderFlow_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CinderFlow_Prefix.pch; sourceTree = "<group>"; };
+		F634EB0311E3BBA700BC869B /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		F634EB0411E3BBA700BC869B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		F634EB0511E3BBA700BC869B /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		F634EB0711E3BBA700BC869B /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		F634EB0811E3BBA700BC869B /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		F634EB0911E3BBA700BC869B /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		F634EB0A11E3BBA700BC869B /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
+		F634EB0B11E3BBA700BC869B /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
+		F64F984011E3BD7700EBE469 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = "<group>"; };
+		F64F984111E3BD7700EBE469 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = main.h; path = src/main.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F634EAE611E3BB5200BC869B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F634EAED11E3BB5200BC869B /* Cocoa.framework in Frameworks */,
+				F634EB0C11E3BBA700BC869B /* Accelerate.framework in Frameworks */,
+				F634EB0D11E3BBA700BC869B /* AudioToolbox.framework in Frameworks */,
+				F634EB0E11E3BBA700BC869B /* AudioUnit.framework in Frameworks */,
+				F634EB1011E3BBA700BC869B /* CoreAudio.framework in Frameworks */,
+				F634EB1111E3BBA700BC869B /* CoreVideo.framework in Frameworks */,
+				F634EB1211E3BBA700BC869B /* OpenGL.framework in Frameworks */,
+				F634EB1311E3BBA700BC869B /* QTKit.framework in Frameworks */,
+				F634EB1411E3BBA700BC869B /* QuickTime.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F634EADA11E3BB5200BC869B = {
+			isa = PBXGroup;
+			children = (
+				F634EAE211E3BB5200BC869B /* Source */,
+				F634EAE311E3BB5200BC869B /* Resources */,
+				F634EAE411E3BB5200BC869B /* Frameworks */,
+				F634EAEA11E3BB5200BC869B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F634EAE211E3BB5200BC869B /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				F64F984011E3BD7700EBE469 /* main.cpp */,
+				F64F984111E3BD7700EBE469 /* main.h */,
+				F634EAEF11E3BB5200BC869B /* CinderFlow_Prefix.pch */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		F634EAE311E3BB5200BC869B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F634EAEE11E3BB5200BC869B /* CinderFlow-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F634EAE411E3BB5200BC869B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F634EB0311E3BBA700BC869B /* Accelerate.framework */,
+				F634EB0411E3BBA700BC869B /* AudioToolbox.framework */,
+				F634EB0511E3BBA700BC869B /* AudioUnit.framework */,
+				F634EB0711E3BBA700BC869B /* CoreAudio.framework */,
+				F634EB0811E3BBA700BC869B /* CoreVideo.framework */,
+				F634EB0911E3BBA700BC869B /* OpenGL.framework */,
+				F634EB0A11E3BBA700BC869B /* QTKit.framework */,
+				F634EB0B11E3BBA700BC869B /* QuickTime.framework */,
+				F634EAEC11E3BB5200BC869B /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F634EAEA11E3BB5200BC869B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F634EAE911E3BB5200BC869B /* CinderFlow.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F634EAE811E3BB5200BC869B /* CinderFlow */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F634EB0011E3BB5200BC869B /* Build configuration list for PBXNativeTarget "CinderFlow" */;
+			buildPhases = (
+				F634EAE511E3BB5200BC869B /* Sources */,
+				F634EAE611E3BB5200BC869B /* Frameworks */,
+				F634EAE711E3BB5200BC869B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CinderFlow;
+			productName = CinderFlow;
+			productReference = F634EAE911E3BB5200BC869B /* CinderFlow.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F634EADC11E3BB5200BC869B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = Apt;
+			};
+			buildConfigurationList = F634EADF11E3BB5200BC869B /* Build configuration list for PBXProject "CinderFlow" */;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 0;
+			mainGroup = F634EADA11E3BB5200BC869B;
+			productRefGroup = F634EAEA11E3BB5200BC869B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F634EAE811E3BB5200BC869B /* CinderFlow */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F634EAE711E3BB5200BC869B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F634EAE511E3BB5200BC869B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F64F984211E3BD7700EBE469 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F634EAFE11E3BB5200BC869B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		F634EAFF11E3BB5200BC869B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+		F634EB0111E3BB5200BC869B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CINDER_PATH = ../../Cinder;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CinderFlow_Prefix.pch;
+				HEADER_SEARCH_PATHS = "$(CINDER_PATH)/boost";
+				INFOPLIST_FILE = "CinderFlow-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"$(CINDER_PATH)/lib/libcinder_d.a",
+					"-lcurl",
+				);
+				PRODUCT_NAME = CinderFlow;
+				USER_HEADER_SEARCH_PATHS = "$(CINDER_PATH)/include";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F634EB0211E3BB5200BC869B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CINDER_PATH = ../../Cinder;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CinderFlow_Prefix.pch;
+				HEADER_SEARCH_PATHS = "$(CINDER_PATH)/boost";
+				INFOPLIST_FILE = "CinderFlow-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"$(CINDER_PATH)/lib/libcinder.a",
+					"-lcurl",
+					"-lz",
+				);
+				PRODUCT_NAME = CinderFlow;
+				USER_HEADER_SEARCH_PATHS = "$(CINDER_PATH)/include";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F634EADF11E3BB5200BC869B /* Build configuration list for PBXProject "CinderFlow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F634EAFE11E3BB5200BC869B /* Debug */,
+				F634EAFF11E3BB5200BC869B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F634EB0011E3BB5200BC869B /* Build configuration list for PBXNativeTarget "CinderFlow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F634EB0111E3BB5200BC869B /* Debug */,
+				F634EB0211E3BB5200BC869B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F634EADC11E3BB5200BC869B /* Project object */;
+}
