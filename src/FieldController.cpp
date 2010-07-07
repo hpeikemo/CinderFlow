@@ -16,9 +16,9 @@
 
 using namespace ci;
 using namespace ci::gl;
+using namespace std;
 
-
-unsigned fieldSize = 100;
+unsigned fieldSize = 50;
 
 FieldController::FieldController() {    
     field = matrix<vectorCell>(fieldSize,fieldSize);
@@ -32,9 +32,20 @@ FieldController::FieldController() {
         }        
     }
     
-    field(2,2).movement = Vec2f(1.0f,0.3f); 
-            
     
+    for (float i = 0; i < field.size1(); i+= 1.0f) {
+        for (float j = 0; j < field.size2(); j+= 1.0f) {
+            particle p;
+            Vec2f pos = Vec2f(i,j);            
+            p.position = pos;
+            p.momentum *= 0;        	        
+            particles.push_back(p);            
+        }
+    }
+    
+    
+    field(2,2).movement = Vec2f(1.0f,0.3f); 
+                
     //field(0,0).movement = Vec2f(2,1);
     
 };
@@ -79,19 +90,31 @@ void FieldController::draw() {
             
             Vec2f r = Rand::randVec2f() * 0.1f;
             
-            field(i, j).movement += field(i, j).change ;// + r;
+            field(i, j).movement += field(i, j).change + r;
             field(i, j).movement.limit(1.0f);            
             field(i, j).change *= 0;
         }        
     }
     
+    for( list<particle>::iterator p = particles.begin(); p != particles.end(); ++p ){
+        int x = p->position.x;
+        int y = p->position.y;
+        
+        if (x < s1 && y < s2 && x >= 0 && x >= 0) {
+            p->momentum += field(x, y).movement * 0.01f;
+        }                
+        p->position += p->momentum;
+        p->momentum *= 0.5;        
+	}
+    
     
     //DRAW:
-    
-//    scale( Vec3f(400/fieldSize,400/fieldSize,400/fieldSize) );
-    scale( Vec3f(5,5,5) );
 
-    translate( Vec2f(1,1) );
+    //    scale( Vec3f(400/fieldSize,400/fieldSize,400/fieldSize) );
+    
+    
+    scale( Vec3f(10,10,10) );    
+    translate( Vec2f(1,1) );    
     
     glColor3f( 0.4f, 0.4f, 0.4f );
     
@@ -110,6 +133,14 @@ void FieldController::draw() {
             drawLine( cellStart, cellEnd );
         }        
     }
+    
+    
+    glColor4f( 0.1f, 0.1f, 0.3f , 0.3f ); 
+    
+    for( list<particle>::iterator p = particles.begin(); p != particles.end(); ++p ){
+        gl::drawSolidCircle( p->position, 1.0f ); 
+        cout << p->position << "\n";
+	}
     
 
     
