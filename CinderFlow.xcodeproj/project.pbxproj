@@ -17,6 +17,7 @@
 		F634EB1311E3BBA700BC869B /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F634EB0A11E3BBA700BC869B /* QTKit.framework */; };
 		F634EB1411E3BBA700BC869B /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F634EB0B11E3BBA700BC869B /* QuickTime.framework */; };
 		F64F984211E3BD7700EBE469 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F64F984011E3BD7700EBE469 /* main.cpp */; };
+		F64F984A11E3C04700EBE469 /* FieldController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F64F984811E3C04700EBE469 /* FieldController.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,8 @@
 		F634EB0B11E3BBA700BC869B /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
 		F64F984011E3BD7700EBE469 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = "<group>"; };
 		F64F984111E3BD7700EBE469 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = main.h; path = src/main.h; sourceTree = "<group>"; };
+		F64F984811E3C04700EBE469 /* FieldController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FieldController.cpp; path = src/FieldController.cpp; sourceTree = "<group>"; };
+		F64F984911E3C04700EBE469 /* FieldController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FieldController.h; path = src/FieldController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,8 @@
 		F634EAE211E3BB5200BC869B /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				F64F984811E3C04700EBE469 /* FieldController.cpp */,
+				F64F984911E3C04700EBE469 /* FieldController.h */,
 				F64F984011E3BD7700EBE469 /* main.cpp */,
 				F64F984111E3BD7700EBE469 /* main.h */,
 				F634EAEF11E3BB5200BC869B /* CinderFlow_Prefix.pch */,
@@ -165,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F64F984211E3BD7700EBE469 /* main.cpp in Sources */,
+				F64F984A11E3C04700EBE469 /* FieldController.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,11 +180,11 @@
 		F634EAFE11E3BB5200BC869B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -190,9 +196,9 @@
 		F634EAFF11E3BB5200BC869B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
