@@ -14,6 +14,7 @@ using namespace ci::app;
 class Main : public ci::app::AppBasic {
 public:
 	void prepareSettings( Settings *settings );
+    void setup();
 	void draw();    
 	void mouseDown( MouseEvent event );
 	void mouseUp( MouseEvent event );

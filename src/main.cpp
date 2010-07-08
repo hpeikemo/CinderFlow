@@ -8,6 +8,7 @@
 
 #include "main.h"
 #include "FieldController.h"
+#include "cinder/rand.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -16,7 +17,11 @@ using namespace std;
 FieldController field;
 
 void Main::prepareSettings( Settings* settings ) {
-    
+    settings->setFullScreen( true );
+}
+
+void Main::setup() {
+    gl::clear( Color( 0.0f, 0.0f, 0.0f ) );
 }
 
 Vec2f emitPosition;
@@ -38,14 +43,15 @@ void Main::mouseUp( MouseEvent event ) {
 
 void Main::draw() {
     gl::setMatricesWindow( getWindowSize() );
-	gl::clear( Color( 0.8f, 0.8f, 0.8f ) );
-	glColor3f( 0.4f, 0.4f, 0.4f );
     
-    if (emitting) {        
-        particle p;
-        p.position = emitPosition/10;
-        p.momentum *= 0;        	        
-        field.particles.push_back(p);
+    if (emitting) { 
+        for (unsigned i = 0;i < 2; ++i) {
+            Vec2f r = Rand::randVec2f() * 0.05f;
+            particle p;
+            p.position = (emitPosition)/field.screenRatio ;
+            p.momentum = r;        	        
+            field.particles.push_back(p);            
+        }
     }
     
     field.draw();

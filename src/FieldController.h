@@ -30,6 +30,7 @@ public:
     void draw();
     void update();
     
+    ci::Vec2f screenRatio;
     
     matrix<vectorCell>  field;        
     list<particle>  particles;
