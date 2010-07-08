@@ -1,0 +1,51 @@
+// !$*UTF8*$!
+{
+	E61073CC11E5B88E00EA4220 /* CinderFlow */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = CinderFlow;
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	E61073CF11E5BF5300EA4220 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	F634EADC11E3BB5200BC869B /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = E61073CC11E5B88E00EA4220 /* CinderFlow */;
+		activeTarget = F634EAE811E3BB5200BC869B /* CinderFlow */;
+		codeSenseManager = E61073CF11E5BF5300EA4220 /* Code sense */;
+		executables = (
+			E61073CC11E5B88E00EA4220 /* CinderFlow */,
+		);
+		userBuildSettings = {
+		};
+	};
+	F634EAE811E3BB5200BC869B /* CinderFlow */ = {
+		activeExec = 0;
+		executables = (
+			E61073CC11E5B88E00EA4220 /* CinderFlow */,
+		);
+	};
+}

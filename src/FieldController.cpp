@@ -15,44 +15,53 @@
 #include "cinder/Rect.h"
 #include <stdlib.h>
 #include <math.h>
-
+#include "cinder/Color.h"
 
 using namespace ci;
 using namespace ci::gl;
 using namespace std;
 
+
 unsigned fieldSize = 40;
- 
-FieldController::FieldController() {    
+
+FieldController::FieldController() {
     field = matrix<vectorCell>(fieldSize,fieldSize);
+};
+
+
+void FieldController::setup() {
+
+    
     
     for (unsigned i = 0; i < field.size1(); ++ i) {
         for (unsigned j = 0; j < field.size2(); ++ j) {
             field(i, j).movement = Vec2f(-1.0f+(rand()%200)/100.0f,-1.0f+(rand()%200)/100.0f);
-//            field(i, j).movement *= 0;
-
+            //            field(i, j).movement *= 0;
+            
             field(i, j).change = Vec2f(0.0f,0.0f);
         }        
     }
     
-//    field(2,2).movement = Vec2f(1.0f,0.3f); 
-
-   /* for (float i = 0; i < field.size1(); i+= 0.3f) {
-        for (float j = 0; j < field.size2(); j+= 0.3f) {
+    //    field(2,2).movement = Vec2f(1.0f,0.3f); 
+    
+    /**/ 
+    for (float i = 0; i < field.size1(); i+= 1.0f) {
+        for (float j = 0; j < field.size2(); j+= 1.0f) {
             particle p;
-            Vec2f pos = Vec2f(i,j);            
+            Vec2f r = Rand::randVec2f() * 1.3f;
+            Vec2f pos = Vec2f(i,j)+r;            
             p.position = pos;
-            p.momentum *= 0;        	        
+            p.momentum *= 0;
+            p.color = ColorAf(0.6f,0.6f,0.6f,0.7f);
             particles.push_back(p);            
         }
-    }*/
-
+    } 
+    //*/
     
-                
+    
+    
     //field(0,0).movement = Vec2f(2,1);
-    
 };
-
 
 double angleDiff(double angle1, double angle2) {
     double diff = angle2 - angle1;
@@ -94,7 +103,7 @@ void FieldController::draw() {
             Vec2f r = Rand::randVec2f() * 0.4f;
             
             field(i, j).movement += field(i, j).change + r;
-            field(i, j).movement.limit(0.9f);            
+            field(i, j).movement.limit(1.1f);            
             field(i, j).change *= 0;
         }        
     }
@@ -110,7 +119,7 @@ void FieldController::draw() {
             particles.erase(p);
         }
         p->position += p->momentum;
-        p->momentum *= 0.97;        
+        p->momentum *= 0.99;        
 	}
     
     
@@ -118,6 +127,10 @@ void FieldController::draw() {
     Vec2i wSize = cinder::app::getWindowSize();
     screenRatio = wSize/Vec2f(fieldSize,fieldSize);    
     
+    glDepthMask( GL_FALSE );
+	glDisable( GL_DEPTH_TEST );
+	glEnable( GL_BLEND );
+	glBlendFunc( GL_SRC_ALPHA, GL_ONE );    
     enableAlphaBlending();
     
  //   gl::clear( ColorA( 0.0f, 0.0f, 0.0f, 0.3f ) );
@@ -140,13 +153,14 @@ void FieldController::draw() {
         }        
     } */
     
-    glColor4f(0.0f, 0.0f, 0.0f, 0.04f);
-    drawSolidRect( Rectf(0,0,wSize.x,wSize.y) );
-    glColor4f( 1.0f, 1.0f, 1.0f , 0.8f ); 
-    
+    glColor4f(0.0f, 0.0f, 0.0f, 0.05f);
+//    drawSolidRect( Rectf(0,0,wSize.x,wSize.y) );
+
+    glColor4f( 0.8f, 0.2f, 9.0f , 0.4f );    
     for( list<particle>::iterator p = particles.begin(); p != particles.end(); ++p ){
-        gl::drawSolidCircle( p->position * screenRatio, 1.4f ); 
-        cout << p->position << "\n";
+        p->color.a = 0.05f;
+        glColor4f( p->color );        
+        gl::drawSolidCircle( p->position * screenRatio, 1.0f );
 	}
     
 

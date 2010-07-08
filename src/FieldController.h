@@ -8,6 +8,7 @@
 
 #include <boost/numeric/ublas/matrix.hpp>
 #include "cinder/Vector.h"
+#include "cinder/Color.h"
 #include <list>
 
 using namespace boost::numeric::ublas;
@@ -21,12 +22,14 @@ struct vectorCell {
 struct particle {
     ci::Vec2f position;
     ci::Vec2f momentum;
+    ci::ColorAf color;
 };
 
 
 class FieldController {
 public:
     FieldController();
+    void setup();
     void draw();
     void update();
     
