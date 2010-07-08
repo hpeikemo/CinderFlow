@@ -114,7 +114,7 @@ void FieldController::draw() {
         
         if (x < s1 && y < s2 && x >= 0 && x >= 0) {
             Vec2f r = Rand::randVec2f() * 0.001f;
-            p->momentum += field(x, y).movement*0.002f+r;
+            p->momentum += field(x, y).movement*0.0002f+r;
         } else {
             particles.erase(p);
         }
@@ -127,11 +127,16 @@ void FieldController::draw() {
     Vec2i wSize = cinder::app::getWindowSize();
     screenRatio = wSize/Vec2f(fieldSize,fieldSize);    
     
+    enableAlphaBlending();
+    
+    glColor4f(0.0f, 0.0f, 0.0f, 0.0005f);
+    //drawSolidRect( Rectf(0,0,wSize.x,wSize.y) );
+    
     glDepthMask( GL_FALSE );
 	glDisable( GL_DEPTH_TEST );
 	glEnable( GL_BLEND );
 	glBlendFunc( GL_SRC_ALPHA, GL_ONE );    
-    enableAlphaBlending();
+//    
     
  //   gl::clear( ColorA( 0.0f, 0.0f, 0.0f, 0.3f ) );
     
@@ -152,15 +157,13 @@ void FieldController::draw() {
             drawLine( cellStart * 10, cellEnd * 10 );
         }        
     } */
-    
-    glColor4f(0.0f, 0.0f, 0.0f, 0.05f);
-//    drawSolidRect( Rectf(0,0,wSize.x,wSize.y) );
-
+        
     glColor4f( 0.8f, 0.2f, 9.0f , 0.4f );    
     for( list<particle>::iterator p = particles.begin(); p != particles.end(); ++p ){
         p->color.a = 0.05f;
         glColor4f( p->color );        
-        gl::drawSolidCircle( p->position * screenRatio, 1.0f );
+        if (p->momentum.length() > 0.01f)
+            gl::drawSolidCircle( p->position * screenRatio, 1.0f );
 	}
     
 
