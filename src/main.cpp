@@ -34,7 +34,7 @@ FieldController field;
 
 void Main::prepareSettings( Settings* settings ) {
 //    settings->setFullScreen( true );
-    settings->setWindowSize( 620, 460 );
+    settings->setWindowSize( 1280 , 720 );
     settings->setFrameRate( 30.0f );
 }
 
@@ -82,7 +82,7 @@ void Main::draw() {
     gl::setMatricesWindow( getWindowSize() );
     
     if (emitting) { 
-        for (unsigned i = 0;i < 6; ++i) {
+        for (unsigned i = 0;i < 16; ++i) {
             Vec2f r = Rand::randVec2f() * 0.01f;
             particle p;
             p.position = (emitPosition)/field.screenRatio ;

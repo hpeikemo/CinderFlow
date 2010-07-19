@@ -55,7 +55,7 @@ void FieldController::setup() {
     
     //field(10,10).movement = Vec2f(1,0.3f);
         
-    /**/
+    /** /
     for (float i = 0; i < field.size1(); i+= 0.5125f) {
         for (float j = 0; j < field.size2(); j+= 0.5125f) {
             particle p;
@@ -69,7 +69,7 @@ void FieldController::setup() {
             particles.push_back(p);            
         }
     } 
-    /**/    
+    //*/    
     
 };
 
@@ -104,7 +104,7 @@ void FieldController::update() {
         for (unsigned j = 0; j < field.size2 (); ++ j) {            
             Vec2f r = Rand::randVec2f() * 0.5f;            
             field(i, j).movement += field(i, j).change + r;
-            field(i, j).movement.limit(1.0f);            
+            field(i, j).movement.limit(2.0f);            
             field(i, j).change *= 0;
         }        
     }
@@ -165,10 +165,13 @@ void FieldController::draw() {
 	glBlendFunc( GL_SRC_ALPHA, GL_ONE );    
     
     for( list<particle>::iterator p = particles.begin(); p != particles.end(); ++p ){
-        p->color.a = 0.1f;
+        p->color.a = 5.0f * p->momentum.length();
+        if (p->color.a > 0.2f) p->color.a = 0.2f;
+        if (p->color.a < 0.005f) p->color.a = 0.005f;
+        
         glColor4f( p->color );        
 //        if (p->momentum.length() > 0.0025f)
-            gl::drawSolidCircle( p->position * screenRatio, 1.0f );
+            gl::drawSolidCircle( p->position * screenRatio, 1.0f * (0.2f/p->color.a) );
 	}
 
 };
