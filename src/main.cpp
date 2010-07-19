@@ -151,7 +151,7 @@ void Main::draw() {
     
     timer.stop();
     //cout << "draw in "<< timer.getSeconds() << "\n";
-  writeScreenshot();
+//  writeScreenshot();
 }
 
 CINDER_APP_BASIC( Main, RendererGl );
