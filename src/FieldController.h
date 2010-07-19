@@ -11,9 +11,6 @@
 #include "cinder/Color.h"
 #include <list>
 
-using namespace boost::numeric::ublas;
-using namespace std;
-
 struct vectorCell {
     ci::Vec2f movement;
     ci::Vec2f change;
@@ -35,7 +32,7 @@ public:
     
     ci::Vec2f screenRatio;
     
-    matrix<vectorCell>  field;        
-    list<particle>  particles;
+    boost::numeric::ublas::matrix<vectorCell>  field;        
+    std::list<particle>  particles;
 
 };

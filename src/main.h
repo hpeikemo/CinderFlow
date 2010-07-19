@@ -3,21 +3,19 @@
 //  CinderFlow
 //
 //  Created by Hans Petter Eikemo on 7/6/10.
-//  Copyright 2010 Apt. All rights reserved.
+//  Copyright 2010. All rights reserved.
 //
 
 #include "cinder/app/AppBasic.h"
 
-using namespace ci;
-using namespace ci::app;
-
 class Main : public ci::app::AppBasic {
 public:
-	void prepareSettings( Settings *settings );
+	void prepareSettings( ci::app::AppBasic::Settings *settings );
     void setup();
+	void update(); 
 	void draw();    
-	void mouseDown( MouseEvent event );
-	void mouseUp( MouseEvent event );
-    void mouseDrag( MouseEvent event );
+    void keyDown( ci::app::KeyEvent event );
+	void mouseDown( ci::app::MouseEvent event );
+	void mouseUp( ci::app::MouseEvent event );
+    void mouseDrag( ci::app::MouseEvent event );
 };
-
