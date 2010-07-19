@@ -26,6 +26,7 @@ using namespace std;
 //Globals:
 Timer timer;
 FieldController field;
+bool debugMode;
 
 
 //Screenshots:
@@ -65,7 +66,7 @@ void createEmitter(Vec2f pos, unsigned ttl=70) {
     emitter e;
     e.position = pos;
     e.color = getColor();
-    e.emitRate = 5;
+    e.emitRate = 1+rand()%9;
     e.timeToLive = ttl;
     emitters.push_back(e);    
 }
@@ -73,7 +74,7 @@ void createEmitter(Vec2f pos, unsigned ttl=70) {
 void updateEmitters() {
     for( list<emitter>::iterator em = emitters.begin(); em != emitters.end(); ++em ){
         for (unsigned i = 0;i < em->emitRate; ++i) {
-            Vec2f r = Rand::randVec2f() * 0.02f;
+            Vec2f r = Rand::randVec2f() * 0.06f;
             particle p;
             p.position = (em->position)/field.screenRatio ;
             p.momentum = r;
@@ -104,7 +105,10 @@ void Main::keyDown( KeyEvent event ) {
 	if( event.getChar() == 'f' ) {
         setFullScreen( ! isFullScreen() );
         gl::clear( Color( 0.0f, 0.0f, 0.0f ) );
-    }     
+    }
+    if( event.getChar() == 'd' ) { 
+        debugMode = !debugMode;
+    }
         
 }
 
@@ -125,17 +129,17 @@ void Main::mouseUp( MouseEvent event ) {
 
 void Main::update() {
     timer.start();
-    field.update();
-    updateEmitters();
+
     field.update();
     updateEmitters();
 
     timer.stop();
     //cout << "update in "<< timer.getSeconds() << "\n";
     
-    if (field.particles.size() < 1000000 && Rand::randFloat() > 0.95f) {
+    if (field.particles.size() < 10000 && Rand::randFloat() > 0.9f) {
         Vec2i wSize = getWindowSize();
-        createEmitter( Vec2f( Rand::randFloat()*wSize.x, Rand::randFloat()*wSize.y ), 400 * Rand::randFloat() );
+        Vec2f pos = wSize/2 + (Rand::randVec2f() * 50);
+        createEmitter( pos, 400 * Rand::randFloat() );
         cout << field.particles.size() << " particles" << endl;
     }
         
@@ -147,11 +151,16 @@ void Main::draw() {
     
     gl::setMatricesWindow( getWindowSize() );
             
-    field.draw();
+    if (debugMode) {
+        field.drawDebug();
+    } else {
+        field.draw();
+    }
+        
     
     timer.stop();
     //cout << "draw in "<< timer.getSeconds() << "\n";
-//  writeScreenshot();
+    //  writeScreenshot();
 }
 
 CINDER_APP_BASIC( Main, RendererGl );

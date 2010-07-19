@@ -49,11 +49,12 @@ void FieldController::setup() {
     for (unsigned i = 0; i < field.size1(); ++ i) {
         for (unsigned j = 0; j < field.size2(); ++ j) {
             field(i, j).movement = Rand::randVec2f();
+//            field(i, j).movement *= 0; 
             field(i, j).change *= 0;
         }        
     }
     
-    //field(10,10).movement = Vec2f(1,0.3f);
+//    field(10,10).movement = Vec2f(1,0.3f);
         
     /** /
     for (float i = 0; i < field.size1(); i+= 0.5125f) {
@@ -82,6 +83,7 @@ double angleDiff(double angle1, double angle2) {
 
 void FieldController::update() {
     
+    //FIELD:
     unsigned s1 = field.size1();
     unsigned s2 = field.size2();
     
@@ -94,30 +96,33 @@ void FieldController::update() {
                 double diff = fabs( angleDiff(neighbour[n].a, cellA) );
                 int ix = i+neighbour[n].x;
                 int jy = j+neighbour[n].y;
-                if (diff < 2.0f && ix < s1 && jy < s2 && jy >= 0 && ix >= 0)
-                    field(ix,jy).change += movem * 0.05f * (2-diff)/2;
+                if (diff < 2.0f && ix < s1 && jy < s2 && jy >= 0 && ix >= 0) {
+                    Vec2f r = Rand::randVec2f() * 0.2f;            
+                    field(ix,jy).change += movem * (2-diff)/20 + r;
+                }
+                    
             }                                    
         }        
     }
     
     for (unsigned i = 0; i < field.size1 (); ++ i) {
-        for (unsigned j = 0; j < field.size2 (); ++ j) {            
-            Vec2f r = Rand::randVec2f() * 0.5f;            
-            field(i, j).movement += field(i, j).change + r;
+        for (unsigned j = 0; j < field.size2 (); ++ j) {                        
+            field(i, j).movement += field(i, j).change;
             field(i, j).movement.limit(1.2f);            
             field(i, j).change *= 0;
         }        
     }
     
+    
+    //PARTICLES:
     for( list<particle>::iterator p = particles.begin(); p != particles.end(); ++p ){
         int x = p->position.x;
         int y = p->position.y;
         
         if (x < s1 && y < s2 && x >= 0 && x >= 0) {
-            Vec2f r = Rand::randVec2f() * 0.5f;
-            p->momentum += (field(x, y).movement+r)*0.005f;
+            p->momentum += (field(x, y).movement)*0.005f;
             p->position += p->momentum;
-            p->momentum *= 0.97;
+            p->momentum *= 0.99;
         } else {
             particles.erase(p);
         }        
@@ -137,27 +142,6 @@ void FieldController::draw() {
     drawSolidRect( Rectf(0,0,wSize.x,wSize.y) );
     //*/
     
-    /*//
-    glColor3f( 0.0f, 0.2f, 0.2f );    
-    for(unsigned i=0; i <= fieldSize; i++) {            
-        drawLine( Vec2f(0,i), Vec2f(fieldSize,i) );
-        drawLine( Vec2f(i,0), Vec2f(i,fieldSize) );
-     }
-    //*/
-    /*//
-    gl::clear( Color( 0.0f, 0.0f, 0.0f ) );
-    glColor3f( 1.0f, 0.4f, 0.4f );
-    for (unsigned i = 0; i < field.size1(); ++ i) {
-        for (unsigned j = 0; j < field.size2(); ++ j) {
-            Vec2f cellStart = Vec2f(i+0.5f,j+0.5f);
-            Vec2f cellEnd = cellStart+ field(i, j).movement;         
-            drawLine( cellStart * screenRatio, cellEnd * screenRatio );
-        }        
-     } 
-     //*/
-    
-    //gl::clear( Color( 0.0f, 0.0f, 0.0f ) );
-
     
     glDepthMask( GL_FALSE );
 	glDisable( GL_DEPTH_TEST );
@@ -165,13 +149,32 @@ void FieldController::draw() {
 	glBlendFunc( GL_SRC_ALPHA, GL_ONE );    
     
     for( list<particle>::iterator p = particles.begin(); p != particles.end(); ++p ){
-        p->color.a = 10.0f * p->momentum.length();
-        if (p->color.a > 0.6f) p->color.a = 0.6f;
-        if (p->color.a < 0.005f) p->color.a = 0.005f;
+        float size = 0.05f/p->momentum.lengthSquared();
         
-        glColor4f( p->color );        
+        p->color.a = 0.5f/size;
+        if (p->color.a > 0.6f) p->color.a = 0.6f;
+        if (p->color.a < 0.0005f) p->color.a = 0.0005f;
+        
+        if (size > 40.f) size = 40.f;
+        
+        
+        glColor4f( p->color );
 //        if (p->momentum.length() > 0.0025f)
-            gl::drawSolidCircle( p->position * screenRatio, 3.0f * (0.4f/p->color.a) );
+            gl::drawSolidCircle( p->position * screenRatio, 1.0f+size , 12 );
 	}
 
 };
+
+void FieldController::drawDebug() { 
+            
+    gl::clear( Color( 0.0f, 0.0f, 0.0f ) );
+    glColor3f( 1.0f, 0.7f, 0.1f );
+    for (unsigned i = 0; i < field.size1(); ++ i) {
+        for (unsigned j = 0; j < field.size2(); ++ j) {
+            Vec2f cellStart = Vec2f(i+0.5f,j+0.5f);
+            Vec2f cellEnd = cellStart+ field(i, j).movement;         
+            drawLine( cellStart * screenRatio, cellEnd * screenRatio );
+        }        
+    }    
+    
+}

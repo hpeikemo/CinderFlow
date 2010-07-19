@@ -32,6 +32,8 @@ public:
     FieldController();
     void setup();
     void draw();
+	void drawDebug();
+
     void update();
     
     ci::Vec2f screenRatio;
