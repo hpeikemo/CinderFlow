@@ -23,7 +23,7 @@ Timer timer;
 FieldController field;
 
 void Main::prepareSettings( Settings* settings ) {
-    settings->setFullScreen( true );
+//    settings->setFullScreen( true );
     settings->setFrameRate( 90.0f );
 }
 
@@ -33,8 +33,11 @@ void Main::setup() {
 }
 
 void Main::keyDown( KeyEvent event ) {
-	if( event.getChar() == 'f' )
-		setFullScreen( ! isFullScreen() );
+	if( event.getChar() == 'f' ) {
+        setFullScreen( ! isFullScreen() );
+        gl::clear( Color( 0.0f, 0.0f, 0.0f ) );
+    }
+
 }
 
 Vec2f emitPosition;
@@ -68,8 +71,8 @@ void Main::draw() {
     gl::setMatricesWindow( getWindowSize() );
     
     if (emitting) { 
-        for (unsigned i = 0;i < 2; ++i) {
-            Vec2f r = Rand::randVec2f() * 0.002f;
+        for (unsigned i = 0;i < 6; ++i) {
+            Vec2f r = Rand::randVec2f() * 0.01f;
             particle p;
             p.position = (emitPosition)/field.screenRatio ;
             p.momentum = r;   
@@ -89,6 +92,8 @@ CINDER_APP_BASIC( Main, RendererGl );
 
 
 /*
+ 
+ Todo: code copied from a sample project, Implement recording.
  if( mSaveFrames ){
  writeImage( getHomeDirectory() + "HodginParticleRedux_" + toString( mCounter ) + ".png", copyWindowSurface() );
  }

@@ -59,8 +59,10 @@ void FieldController::setup() {
     for (float i = 0; i < field.size1(); i+= 0.5125f) {
         for (float j = 0; j < field.size2(); j+= 0.5125f) {
             particle p;
+            
             Vec2f r = Rand::randVec2f() * 1.3f;
             Vec2f pos = Vec2f(i,j)+r;            
+                                                
             p.position = pos;
             p.momentum *= 0;
             p.color = ColorAf(0.6f,0.6f,0.6f,0.7f);
@@ -100,7 +102,7 @@ void FieldController::update() {
     
     for (unsigned i = 0; i < field.size1 (); ++ i) {
         for (unsigned j = 0; j < field.size2 (); ++ j) {            
-            Vec2f r = Rand::randVec2f() * 0.2f;            
+            Vec2f r = Rand::randVec2f() * 0.5f;            
             field(i, j).movement += field(i, j).change + r;
             field(i, j).movement.limit(1.0f);            
             field(i, j).change *= 0;
@@ -112,10 +114,10 @@ void FieldController::update() {
         int y = p->position.y;
         
         if (x < s1 && y < s2 && x >= 0 && x >= 0) {
-            Vec2f r = Rand::randVec2f() * 0.001f;
-            p->momentum += field(x, y).movement*0.0002f+r;
+            Vec2f r = Rand::randVec2f() * 0.5f;
+            p->momentum += (field(x, y).movement+r)*0.005f;
             p->position += p->momentum;
-            p->momentum *= 0.99;
+            p->momentum *= 0.97;
         } else {
             particles.erase(p);
         }        
@@ -128,10 +130,10 @@ void FieldController::draw() {
     Vec2i wSize = cinder::app::getWindowSize();
     screenRatio = wSize/Vec2f(fieldSize,fieldSize);    
             
-    /*//
+    //*//
     enableAlphaBlending();
-    glColor4f(0.0f, 0.0f, 0.0f, 0.0005f);
-    glColor4f(0.0f, 0.0f, 0.0f, 1.0f);    
+    glColor4f(0.0f, 0.0f, 0.0f, 0.05f);
+    //glColor4f(0.0f, 0.0f, 0.0f, 1.0f);    
     drawSolidRect( Rectf(0,0,wSize.x,wSize.y) );
     //*/
     
@@ -163,7 +165,7 @@ void FieldController::draw() {
 	glBlendFunc( GL_SRC_ALPHA, GL_ONE );    
     
     for( list<particle>::iterator p = particles.begin(); p != particles.end(); ++p ){
-        p->color.a = 0.05f;
+        p->color.a = 0.1f;
         glColor4f( p->color );        
 //        if (p->momentum.length() > 0.0025f)
             gl::drawSolidCircle( p->position * screenRatio, 1.0f );
