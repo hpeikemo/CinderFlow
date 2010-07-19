@@ -11,6 +11,8 @@
 #include "cinder/Rand.h"
 #include "cinder/Color.h"
 #include "cinder/Timer.h"
+#include "cinder/ImageIo.h"
+#include "cinder/utilities.h"
 #include <stdio.h>
 #include <OpenGL/OpenGL.h>
 
@@ -18,13 +20,22 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
+
+unsigned screenCount;
+void writeScreenshot() {
+    writeImage( getHomeDirectory() + "output/flow_" + toString( screenCount ) + ".png", copyWindowSurface() );    
+    ++screenCount;
+}
+
+
 Timer timer;
 
 FieldController field;
 
 void Main::prepareSettings( Settings* settings ) {
 //    settings->setFullScreen( true );
-    settings->setFrameRate( 90.0f );
+    settings->setWindowSize( 620, 460 );
+    settings->setFrameRate( 30.0f );
 }
 
 void Main::setup() {
@@ -85,17 +96,7 @@ void Main::draw() {
     
     timer.stop();
     //cout << "draw in "<< timer.getSeconds() << "\n";
-
+//  writeScreenshot();
 }
 
 CINDER_APP_BASIC( Main, RendererGl );
-
-
-/*
- 
- Todo: code copied from a sample project, Implement recording.
- if( mSaveFrames ){
- writeImage( getHomeDirectory() + "HodginParticleRedux_" + toString( mCounter ) + ".png", copyWindowSurface() );
- }
- 
- */
