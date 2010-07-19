@@ -69,7 +69,7 @@ void FieldController::setup() {
             particles.push_back(p);            
         }
     } 
-    //*/    
+    // */    
     
 };
 
@@ -104,7 +104,7 @@ void FieldController::update() {
         for (unsigned j = 0; j < field.size2 (); ++ j) {            
             Vec2f r = Rand::randVec2f() * 0.5f;            
             field(i, j).movement += field(i, j).change + r;
-            field(i, j).movement.limit(2.0f);            
+            field(i, j).movement.limit(1.2f);            
             field(i, j).change *= 0;
         }        
     }
@@ -133,7 +133,7 @@ void FieldController::draw() {
     //*//
     enableAlphaBlending();
     glColor4f(0.0f, 0.0f, 0.0f, 0.05f);
-    //glColor4f(0.0f, 0.0f, 0.0f, 1.0f);    
+    glColor4f(0.0f, 0.0f, 0.0f, 1.0f);    
     drawSolidRect( Rectf(0,0,wSize.x,wSize.y) );
     //*/
     
@@ -165,13 +165,13 @@ void FieldController::draw() {
 	glBlendFunc( GL_SRC_ALPHA, GL_ONE );    
     
     for( list<particle>::iterator p = particles.begin(); p != particles.end(); ++p ){
-        p->color.a = 5.0f * p->momentum.length();
-        if (p->color.a > 0.2f) p->color.a = 0.2f;
+        p->color.a = 10.0f * p->momentum.length();
+        if (p->color.a > 0.6f) p->color.a = 0.6f;
         if (p->color.a < 0.005f) p->color.a = 0.005f;
         
         glColor4f( p->color );        
 //        if (p->momentum.length() > 0.0025f)
-            gl::drawSolidCircle( p->position * screenRatio, 1.0f * (0.2f/p->color.a) );
+            gl::drawSolidCircle( p->position * screenRatio, 3.0f * (0.4f/p->color.a) );
 	}
 
 };

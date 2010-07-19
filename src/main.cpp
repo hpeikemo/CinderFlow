@@ -14,6 +14,7 @@
 #include "cinder/ImageIo.h"
 #include "cinder/utilities.h"
 #include <stdio.h>
+#include <list.h>
 #include <OpenGL/OpenGL.h>
 
 using namespace ci;
@@ -21,16 +22,72 @@ using namespace ci::app;
 using namespace std;
 
 
+
+//Globals:
+Timer timer;
+FieldController field;
+
+
+//Screenshots:
 unsigned screenCount;
 void writeScreenshot() {
-    writeImage( getHomeDirectory() + "output/flow_" + toString( screenCount ) + ".png", copyWindowSurface() );    
+    char num[5];
+    sprintf(num, "%05i", screenCount );    
+    writeImage( getHomeDirectory() + "output/flow_" + num + ".png", copyWindowSurface() );    
     ++screenCount;
 }
 
 
-Timer timer;
+//Emitters:
+struct emitter {
+    Vec2f position;
+    ColorAf color;
+    int timeToLive;
+    unsigned emitRate;
+};
 
-FieldController field;
+
+ColorAf getColor() {
+//    return ColorAf(Rand::randFloat(),Rand::randFloat(),Rand::randFloat(),0.8f); //Random color;
+    if ( (rand() % 2) == 1) {
+        return ColorAf(0.0f,0.2f,0.3f,0.5f);    
+        
+    } else {
+        return ColorAf(0.3f,0.2f,0.0f,0.5f);            
+        
+    }
+    
+    
+}
+
+list<emitter> emitters;
+void createEmitter(Vec2f pos, unsigned ttl=70) {
+    emitter e;
+    e.position = pos;
+    e.color = getColor();
+    e.emitRate = 5;
+    e.timeToLive = ttl;
+    emitters.push_back(e);    
+}
+
+void updateEmitters() {
+    for( list<emitter>::iterator em = emitters.begin(); em != emitters.end(); ++em ){
+        for (unsigned i = 0;i < em->emitRate; ++i) {
+            Vec2f r = Rand::randVec2f() * 0.02f;
+            particle p;
+            p.position = (em->position)/field.screenRatio ;
+            p.momentum = r;
+            p.color = em->color;
+            field.particles.push_back(p);            
+        }
+        --em->timeToLive;
+        if (em->timeToLive < 1)
+            emitters.erase(em);
+    }
+}
+
+
+//Main impl:
 
 void Main::prepareSettings( Settings* settings ) {
 //    settings->setFullScreen( true );
@@ -47,56 +104,54 @@ void Main::keyDown( KeyEvent event ) {
 	if( event.getChar() == 'f' ) {
         setFullScreen( ! isFullScreen() );
         gl::clear( Color( 0.0f, 0.0f, 0.0f ) );
-    }
-
+    }     
+        
 }
-
-Vec2f emitPosition;
-ColorAf currentColor;
-bool emitting;
 
 void Main::mouseDown( MouseEvent event ) {	
-    emitPosition = event.getPos();
-    currentColor = ColorAf(Rand::randFloat(),Rand::randFloat(),Rand::randFloat(),0.8f);
-    emitting = true;
+    createEmitter(event.getPos());        
 }
 
-void Main::mouseDrag( MouseEvent event ) {	
-    emitPosition = event.getPos();
+/*
+void Main::mouseDrag( MouseEvent event ) {
+    mouseEmitter->position = event.getPos();
+    mouseEmitter->timeToLive = 1000;
 }
 
 void Main::mouseUp( MouseEvent event ) {	
-    emitting = false;
+    mouseEmitter->timeToLive = 0;
 }
+*/
 
 void Main::update() {
     timer.start();
     field.update();
+    updateEmitters();
+    field.update();
+    updateEmitters();
+
     timer.stop();
     //cout << "update in "<< timer.getSeconds() << "\n";
+    
+    if (field.particles.size() < 1000000 && Rand::randFloat() > 0.95f) {
+        Vec2i wSize = getWindowSize();
+        createEmitter( Vec2f( Rand::randFloat()*wSize.x, Rand::randFloat()*wSize.y ), 400 * Rand::randFloat() );
+        cout << field.particles.size() << " particles" << endl;
+    }
+        
 }
+
 
 void Main::draw() {
     timer.start();
     
     gl::setMatricesWindow( getWindowSize() );
-    
-    if (emitting) { 
-        for (unsigned i = 0;i < 16; ++i) {
-            Vec2f r = Rand::randVec2f() * 0.01f;
-            particle p;
-            p.position = (emitPosition)/field.screenRatio ;
-            p.momentum = r;   
-            p.color = currentColor;
-            field.particles.push_back(p);            
-        }
-    }
-    
+            
     field.draw();
     
     timer.stop();
     //cout << "draw in "<< timer.getSeconds() << "\n";
-//  writeScreenshot();
+  writeScreenshot();
 }
 
 CINDER_APP_BASIC( Main, RendererGl );
