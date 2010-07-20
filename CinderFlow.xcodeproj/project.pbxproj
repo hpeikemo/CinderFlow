@@ -34,9 +34,10 @@
 		F634EB0A11E3BBA700BC869B /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		F634EB0B11E3BBA700BC869B /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
 		F64F984011E3BD7700EBE469 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = "<group>"; };
-		F64F984111E3BD7700EBE469 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = main.h; path = src/main.h; sourceTree = "<group>"; };
 		F64F984811E3C04700EBE469 /* FieldController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FieldController.cpp; path = src/FieldController.cpp; sourceTree = "<group>"; };
-		F64F984911E3C04700EBE469 /* FieldController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FieldController.h; path = src/FieldController.h; sourceTree = "<group>"; };
+		F67B3FA311F613D400276FE8 /* FieldController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FieldController.h; path = include/FieldController.h; sourceTree = "<group>"; };
+		F67B3FA411F613D400276FE8 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = main.h; path = include/main.h; sourceTree = "<group>"; };
+		F67B3FA811F614D900276FE8 /* ParticleSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParticleSystem.h; path = include/ParticleSystem.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +63,7 @@
 		F634EADA11E3BB5200BC869B = {
 			isa = PBXGroup;
 			children = (
+				F67B3FA211F6139600276FE8 /* Headers */,
 				F634EAE211E3BB5200BC869B /* Source */,
 				F634EAE311E3BB5200BC869B /* Resources */,
 				F634EAE411E3BB5200BC869B /* Frameworks */,
@@ -73,10 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				F64F984811E3C04700EBE469 /* FieldController.cpp */,
-				F64F984911E3C04700EBE469 /* FieldController.h */,
 				F64F984011E3BD7700EBE469 /* main.cpp */,
-				F64F984111E3BD7700EBE469 /* main.h */,
-				F634EAEF11E3BB5200BC869B /* CinderFlow_Prefix.pch */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -84,6 +83,7 @@
 		F634EAE311E3BB5200BC869B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F634EAEF11E3BB5200BC869B /* CinderFlow_Prefix.pch */,
 				F634EAEE11E3BB5200BC869B /* CinderFlow-Info.plist */,
 			);
 			name = Resources;
@@ -111,6 +111,16 @@
 				F634EAE911E3BB5200BC869B /* CinderFlow.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F67B3FA211F6139600276FE8 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				F67B3FA811F614D900276FE8 /* ParticleSystem.h */,
+				F67B3FA311F613D400276FE8 /* FieldController.h */,
+				F67B3FA411F613D400276FE8 /* main.h */,
+			);
+			name = Headers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

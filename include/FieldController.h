@@ -9,22 +9,7 @@
 #include "cinder/Vector.h"
 #include "cinder/Color.h"
 #include <list>
-
-
-struct vectorCell {
-    ci::Vec2f movement;
-    ci::Vec2f change;
-    vectorCell() : movement(0.0f,0.0f) , change(0.0f,0.0f) {};
-};
-
-struct particle {
-    ci::Vec2f position;
-    ci::Vec2f momentum;
-    ci::ColorAf color;
-    particle() : position(0.0f,0.0f) , momentum(0.0f,0.0f) {};
-
-};
-
+#include "ParticleSystem.h"
 
 class FieldController {
 public:

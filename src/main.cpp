@@ -27,7 +27,6 @@ Timer timer;
 FieldController field;
 bool debugMode;
 
-
 //Screenshots:
 unsigned screenCount;
 void writeScreenshot() {
@@ -36,15 +35,6 @@ void writeScreenshot() {
     writeImage( getHomeDirectory() + "output/flow_" + num + ".png", copyWindowSurface() );    
     ++screenCount;
 }
-
-
-//Emitters:
-struct emitter {
-    Vec2f position;
-    ColorAf color;
-    int timeToLive;
-    unsigned emitRate;
-};
 
 
 ColorAf getColor() {
@@ -67,7 +57,7 @@ void createEmitter(Vec2f pos, unsigned ttl=70) {
     e.color = getColor();
     e.emitRate = 1+rand()%9;
     e.timeToLive = ttl;
-    emitters.push_back(e);    
+    emitters.push_back(e);
 }
 
 void updateEmitters() {
@@ -93,6 +83,9 @@ void Main::prepareSettings( Settings* settings ) {
 //    settings->setFullScreen( true );
     settings->setWindowSize( 1280 , 720 );
     settings->setFrameRate( 30.0f );
+    
+    srand( (unsigned)time( NULL ) );
+    
 }
 
 void Main::setup() {
@@ -143,7 +136,6 @@ void Main::update() {
     }
         
 }
-
 
 void Main::draw() {
     timer.start();
