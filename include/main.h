@@ -15,6 +15,4 @@ public:
 	void draw();    
     void keyDown( ci::app::KeyEvent event );
 	void mouseDown( ci::app::MouseEvent event );
-//	void mouseUp( ci::app::MouseEvent event );
-//    void mouseDrag( ci::app::MouseEvent event );
 };

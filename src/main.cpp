@@ -80,7 +80,6 @@ void updateEmitters() {
 //Main impl:
 
 void Main::prepareSettings( Settings* settings ) {
-//    settings->setFullScreen( true );
     settings->setWindowSize( 1280 , 720 );
     settings->setFrameRate( 30.0f );
     
@@ -107,17 +106,6 @@ void Main::keyDown( KeyEvent event ) {
 void Main::mouseDown( MouseEvent event ) {	
     createEmitter(event.getPos());        
 }
-
-/*
-void Main::mouseDrag( MouseEvent event ) {
-    mouseEmitter->position = event.getPos();
-    mouseEmitter->timeToLive = 1000;
-}
-
-void Main::mouseUp( MouseEvent event ) {	
-    mouseEmitter->timeToLive = 0;
-}
-*/
 
 void Main::update() {
     timer.start();

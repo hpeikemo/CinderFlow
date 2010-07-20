@@ -48,35 +48,19 @@ void FieldController::setup() {
     for (unsigned i = 0; i < field.size1(); ++ i) {
         for (unsigned j = 0; j < field.size2(); ++ j) {
             field(i, j).movement = Rand::randVec2f();
-//            field(i, j).movement *= 0; 
             field(i, j).change *= 0;
         }        
     }
-    
-//    field(10,10).movement = Vec2f(1,0.3f);
         
-    /** /
-    for (float i = 0; i < field.size1(); i+= 0.5125f) {
-        for (float j = 0; j < field.size2(); j+= 0.5125f) {
-            particle p;
-            
-            Vec2f r = Rand::randVec2f() * 1.3f;
-            Vec2f pos = Vec2f(i,j)+r;            
-                                                
-            p.position = pos;
-            p.momentum *= 0;
-            p.color = ColorAf(0.6f,0.6f,0.6f,0.7f);
-            particles.push_back(p);            
-        }
-    } 
-    // */    
-    
 };
+
+
+const double M_PI2 = M_PI*2;
 
 double angleDiff(double angle1, double angle2) {
     double diff = angle2 - angle1;
-    while (diff < -M_PI) diff += M_PI*2;
-    while (diff > M_PI) diff -= M_PI*2;
+    while (diff < -M_PI) diff += M_PI2;
+    while (diff > M_PI) diff -= M_PI2;
     return diff;
 };
 
@@ -97,7 +81,9 @@ void FieldController::update() {
                 int jy = j+neighbour[n].y;
                 if (diff < 2.0f && ix < s1 && jy < s2 && jy >= 0 && ix >= 0) {
                     Vec2f r = Rand::randVec2f() * 0.2f;            
-                    field(ix,jy).change += movem * (2-diff)/20 + r;
+                    Vec2f influence =  movem * (2-diff)/20 + r;
+                    field(ix,jy).change += influence;
+                    //field(i,j).change -= influence * 0.2f;
                 }
                     
             }                                    
@@ -134,19 +120,19 @@ void FieldController::draw() {
     Vec2i wSize = cinder::app::getWindowSize();
     screenRatio = wSize/Vec2f(fieldSize,fieldSize);    
             
-    //*//
+    /*//
     enableAlphaBlending();
-    glColor4f(0.0f, 0.0f, 0.0f, 0.05f);
     glColor4f(0.0f, 0.0f, 0.0f, 1.0f);    
     drawSolidRect( Rectf(0,0,wSize.x,wSize.y) );
     //*/
     
+    gl::clear( Color( 0.0f, 0.0f, 0.0f ) );
     
     glDepthMask( GL_FALSE );
 	glDisable( GL_DEPTH_TEST );
 	glEnable( GL_BLEND );
 	glBlendFunc( GL_SRC_ALPHA, GL_ONE );    
-    
+        
     for( list<particle>::iterator p = particles.begin(); p != particles.end(); ++p ){
         float size = 0.05f/p->momentum.lengthSquared();
         
@@ -158,8 +144,7 @@ void FieldController::draw() {
         
         
         glColor4f( p->color );
-//        if (p->momentum.length() > 0.0025f)
-            gl::drawSolidCircle( p->position * screenRatio, 1.0f+size , 12 );
+        gl::drawSolidCircle( p->position * screenRatio, 1.0f+size , 12 );
 	}
 
 };
