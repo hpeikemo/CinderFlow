@@ -3,7 +3,6 @@
 //  CinderFlow
 //
 //  Created by Hans Petter Eikemo on 7/6/10.
-//  Copyright 2010. All rights reserved.
 //
 
 #include "cinder/app/AppBasic.h"

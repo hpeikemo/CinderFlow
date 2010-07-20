@@ -3,7 +3,6 @@
 //  CinderFlow
 //
 //  Created by Hans Petter Eikemo on 7/6/10.
-//  Copyright 2010 Apt. All rights reserved.
 //
 
 
@@ -152,7 +151,7 @@ void FieldController::draw() {
         float size = 0.05f/p->momentum.lengthSquared();
         
         p->color.a = 0.5f/size;
-        if (p->color.a > 0.6f) p->color.a = 0.6f;
+        if (p->color.a > 0.4f) p->color.a = 0.4f;
         if (p->color.a < 0.0005f) p->color.a = 0.0005f;
         
         if (size > 40.f) size = 40.f;
