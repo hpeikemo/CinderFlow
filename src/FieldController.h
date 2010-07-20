@@ -3,7 +3,6 @@
 //  CinderFlow
 //
 //  Created by Hans Petter Eikemo on 7/6/10.
-//  Copyright 2010 Apt. All rights reserved.
 //
 
 #include <boost/numeric/ublas/matrix.hpp>
